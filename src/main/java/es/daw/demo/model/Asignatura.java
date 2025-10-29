@@ -2,28 +2,27 @@ package es.daw.demo.model;
 
 public class Asignatura {
 
-    private int id;
+    private Integer id;
     private String nombre;
     private String curso;
-    private int id_profesor;
+    private Integer id_profesor;
 
 
     public Asignatura() {
     }
 
-    public Asignatura(String curso, String nombre, int id, int id_profesor) {
+    public Asignatura(String curso, String nombre, Integer id, Integer id_profesor) {
         this.curso = curso;
         this.nombre = nombre;
         this.id = id;
         this.id_profesor = id_profesor;
     }
 
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -43,11 +42,11 @@ public class Asignatura {
         this.curso = curso;
     }
 
-    public int getId_profesor() {
+    public Integer getId_profesor() {
         return id_profesor;
     }
 
-    public void setId_profesor(int id_profesor) {
+    public void setId_profesor(Integer id_profesor) {
         this.id_profesor = id_profesor;
     }
 

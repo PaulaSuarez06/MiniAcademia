@@ -43,7 +43,7 @@ public class CrearProfesoresServlet extends HttpServlet {
             throw new ServletException("Error al obtener los profesores",e);
         }
         request.setAttribute("profesores", profesores);
-        getServletContext().getRequestDispatcher("/crearProfesores.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/formularioProfesor.jsp").forward(request, response);
 
 
 

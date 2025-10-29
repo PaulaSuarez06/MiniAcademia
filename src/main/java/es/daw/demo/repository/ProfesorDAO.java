@@ -62,4 +62,22 @@ public class ProfesorDAO implements GenericDAO<Profesor, Integer> {
     public void delete(Integer integer) throws SQLException {
 
     }
+
+    public Optional<Profesor> findByNombre(String nombre) throws SQLException {
+        String SQL = "SELECT * FROM profesor WHERE nombre = ?";
+        try(PreparedStatement ps = connection.prepareStatement(SQL)){
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Profesor profesor = new Profesor(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("email"));
+                return Optional.of(profesor);
+            } else {
+                return Optional.empty();
+            }
+        }
+    }
 }

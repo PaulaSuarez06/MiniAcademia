@@ -22,21 +22,21 @@
     boolean esEdicion = profesor != null;
 
     String titulo = esEdicion ? "Modificar Profesor" : "Crear Profesor";
-    String accion = esEdicion ? "/profesores/editar" : "/profesores/crear";
+    String accion = esEdicion ? "/editar" : "/crear";
 %>
 
 
 <div class="container mt-5">
     <div class="card shadow-sm">
         <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
-            <h3 class="mb-0"><i class="bi bi-pencil-square"></i> <%=titulo%>></h3>
-            <a href="/profesores/ver" class="btn btn-outline-secondary btn-sm">
+            <h3 class="mb-0"><i class="bi bi-pencil-square"></i> <%=titulo%></h3>
+            <a href="<%=request.getContextPath()%>/profesores/ver" class="btn btn-outline-secondary btn-sm">
                 <i class="bi bi-arrow-left"></i> Volver al listado
             </a>
         </div>
 
         <div class="card-body">
-            <form action=<%=accion%>> method="post" class="needs-validation" novalidate>
+            <form action="<%=accion%>" method= "post" class="needs-validation" novalidate>
                 <!-- Campo oculto para el ID -->
                 <input type="hidden" name="id" value="">
 

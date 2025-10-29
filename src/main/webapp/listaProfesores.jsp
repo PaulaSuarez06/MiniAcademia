@@ -1,5 +1,8 @@
 <%@ page import="es.daw.demo.model.Profesor" %>
 <%@ page import="java.util.List" %>
+<%@ page import="es.daw.demo.model.Asignatura" %>
+<%@ page import="jdk.jshell.execution.Util" %>
+<%@ page import="es.daw.demo.util.Utils" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="es">
@@ -23,14 +26,14 @@
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h3 class="mb-0">Listado de Profesores</h3>
-            <a href="<%=request.getContextPath()%>/profesores/crear"  class="btn btn-success btn-sm">
+            <a href="<%=request.getContextPath()%>/formularioProfesor.jsp"  class="btn btn-success btn-sm">
                 <i class="bi bi-plus-lg"></i> Agregar Profesor
             </a>
         </div>
 
         <div class="card-body">
             <!-- 🔍 Formulario de filtrado -->
-            <form action="/profesores/ver" method="get" class="row g-2 mb-3">
+            <form action="<%=request.getContextPath()%>/profesores/buscar"  method="get" class="row g-2 mb-3">
                 <div class="col-md-6">
                     <input type="text" name="nombre" class="form-control" placeholder="Filtrar por nombre...">
                 </div>
@@ -54,13 +57,18 @@
                 <tbody>
                 <%
                     List<Profesor> profesores = (List<Profesor>) request.getAttribute("profesores");
+                    List < Asignatura> asignaturas = (List<Asignatura>) request.getAttribute("asignaturas");
                     if (profesores != null && !profesores.isEmpty()) {
                         for (Profesor profesor : profesores) {
+                          List<Asignatura>  asignatura = Utils.obtenerAsignaturasPorProfesor(asignaturas, profesor.getId());
                 %>
+
+
                 <tr>
                     <td><%= profesor.getNombre() %></td>
                     <td><%= profesor.getApellidos() %></td>
                     <td><%= profesor.getEmail() %></td>
+                    <td><%= asignatura %></td>
                     <td class="text-center">
                         <div class="d-flex justify-content-center gap-2">
                             <!-- Botón Editar -->
@@ -93,6 +101,8 @@
                 <%
                     }
                 %>
+                <p class="text-muted">Has visitado esta página <strong><%= request.getAttribute("visitas") %></strong> veces.</p>
+
                 </tbody>
             </table>
         </div>
